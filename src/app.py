@@ -116,5 +116,22 @@ def get_menu_items():
     
     return jsonify(result), 200
 
+@app.route('/menu_items/<int:item_id>', methods=['GET'])
+def get_menu_item(item_id):
+    # Find the menu item by ID
+    menu_item = MenuItem.query.get(item_id)
+    
+    if not menu_item:
+        return jsonify({'error': 'Menu item not found'}), 404
+    
+    # Return the menu item details
+    return jsonify({
+        'item_id': menu_item.item_id,
+        'name': menu_item.name,
+        'description': menu_item.description,
+        'price': menu_item.price
+    }), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
