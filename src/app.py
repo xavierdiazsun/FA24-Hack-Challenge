@@ -90,6 +90,33 @@ def delete_order(order_id):
     db.session.commit()
     return jsonify({'message': f'Order with ID {order_id} deleted successfully'}), 200
 
+@app.route('/menu_items', methods=['GET'])
+def get_menu_items():
+    # Optional query parameters
+    hall_id = request.args.get('hall_id', type=int)
+    
+    # Query base
+    query = MenuItem.query.join(Menu).join(DiningHall)
+    
+    # Apply filters if provided
+    if hall_id:
+        query = query.filter(Menu.hall_id == hall_id)
+
+    # Fetch results
+    menu_items = query.all()
+    
+    # Format response
+    result = []
+    for item in menu_items:
+        result.append({
+            'item_id': item.item_id,
+            'menu_id': item.menu_id,
+            'name': item.name,
+            'description': item.description,
+            'price': item.price
+        })
+    
+    return jsonify(result), 200
 
 
 if __name__ == "__main__":
