@@ -55,5 +55,32 @@ def place_order():
     db.session.commit()
     return jsonify({'message': 'Order placed successfully', 'order_id': new_order.order_id}), 201
 
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
+
+@app.route('/orders/<int:order_id>', methods=['DELETE'])
+def delete_order(order_id):
+    order = Order.query.get(order_id)
+    if not order:
+        return jsonify({'error': 'Order not found'}), 404
+
+    # Optional: Check if there are associated order items and delete them first
+    order_items = OrderItem.query.filter_by(order_id=order_id).all()
+    for item in order_items:
+        db.session.delete(item)
+
+    db.session.delete(order)
+    db.session.commit()
+    return jsonify({'message': f'Order with ID {order_id} deleted successfully'}), 200
+
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
