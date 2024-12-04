@@ -15,7 +15,7 @@ def hello_world():
 # your routes here
 
 from flask import Flask, request, jsonify
-from db import db, User, DiningHall, Menu, MenuItem, Order, OrderItem, Payment
+from db import db, User, DiningHall, MenuItem, Order, OrderItem, Payment
 
 # Initialize Flask app
 app = Flask(__name__)
