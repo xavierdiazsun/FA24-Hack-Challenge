@@ -41,28 +41,15 @@ class DiningHall(db.Model):
     contact_email = db.Column(db.String(100), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-# Menu Model
-class Menu(db.Model):
-    __tablename__ = 'menus'
-    menu_id = db.Column(db.Integer, primary_key=True)
-    hall_id = db.Column(db.Integer, db.ForeignKey('dining_halls.hall_id'), nullable=False)
-    date = db.Column(db.Date, nullable=False)
-    description = db.Column(db.String(255), nullable=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
+    
 # Menu Item Model
 class MenuItem(db.Model):
     __tablename__ = 'menu_items'
     item_id = db.Column(db.Integer, primary_key=True)
-    menu_id = db.Column(db.Integer, db.ForeignKey('menus.menu_id'), nullable=False)
+    menu_id = db.Column(db.Integer, db.ForeignKey('dining_halls.hall_id'), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255), nullable=True)
     price = db.Column(db.Float, nullable=False)
-    calories = db.Column(db.Integer, nullable=True)
-    allergens = db.Column(db.String(255), nullable=True)
-    availability = db.Column(db.String(50), nullable=False)
 
 # Order Model
 class Order(db.Model):
