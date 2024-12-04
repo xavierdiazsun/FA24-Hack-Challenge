@@ -66,6 +66,17 @@ def place_order():
     db.session.commit()
     return jsonify({'message': 'Order placed successfully', 'order_id': new_order.order_id}), 201
 
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
