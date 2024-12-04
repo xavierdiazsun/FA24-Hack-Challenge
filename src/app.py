@@ -42,17 +42,6 @@ def create_user():
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
 
-@app.route('/dining_halls', methods=['GET'])
-def get_dining_halls():
-    dining_halls = DiningHall.query.all()
-    return jsonify([{
-        'id': hall.hall_id,
-        'name': hall.name,
-        'location': hall.location,
-        'open_time': hall.open_time.strftime('%H:%M'),
-        'close_time': hall.close_time.strftime('%H:%M')
-    } for hall in dining_halls]), 200
-
 @app.route('/orders', methods=['POST'])
 def place_order():
     data = request.json
@@ -65,6 +54,61 @@ def place_order():
     db.session.add(new_order)
     db.session.commit()
     return jsonify({'message': 'Order placed successfully', 'order_id': new_order.order_id}), 201
+
+@app.route('/orders/<int:order_id>', methods=['PUT'])
+def edit_order(order_id):
+    data = request.json
+    # Find the order by ID
+    order = Order.query.get(order_id)
+    
+    if not order:
+        return jsonify({'error': 'Order not found'}), 404
+    
+    # Update fields if present in the request
+    if 'status' in data:
+        order.status = data['status']
+    if 'total_price' in data:
+        order.total_price = data['total_price']
+    if 'pickup_time' in data:
+        order.pickup_time = data['pickup_time']
+    
+    # Save changes to the database
+    db.session.commit()
+    
+    return jsonify({'message': 'Order updated successfully', 'order_id': order_id}), 200
+
+@app.route('/menu_items', methods=['GET'])
+def get_menu_items():
+    # Optional query parameters
+    hall_id = request.args.get('hall_id', type=int)
+    menu_id = request.args.get('menu_id', type=int)
+    availability = request.args.get('availability', type=str)
+    
+    # Query base
+    query = MenuItem.query.join(Menu).join(DiningHall)
+    
+    # Apply filters if provided
+    if hall_id:
+        query = query.filter(Menu.hall_id == hall_id)
+    
+    # Fetch results
+    menu_items = query.all()
+    
+    # Format response
+    result = []
+    for item in menu_items:
+        result.append({
+            'item_id': item.item_id,
+            'menu_id': item.menu_id,
+            'name': item.name,
+            'description': item.description,
+            'price': item.price,
+            'calories': item.calories,
+            'allergens': item.allergens,
+            'availability': item.availability
+        })
+    
+    return jsonify(result), 200
 
 
 if __name__ == "__main__":
