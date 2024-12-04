@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
 
-import src.db as db
+import db
 from flask import Flask
 from flask import request
 from flask import jsonify
