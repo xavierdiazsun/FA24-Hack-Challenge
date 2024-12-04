@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F8E8EFF62D011142004C539B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8EFF52D011142004C539B /* Alamofire */; };
+		F8E8EFF82D011142004C539B /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8EFF72D011142004C539B /* AlamofireDynamic */; };
+		F8E8EFFB2D0111AD004C539B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8EFFA2D0111AD004C539B /* SDWebImage */; };
+		F8E8EFFD2D0111AD004C539B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8EFFC2D0111AD004C539B /* SDWebImageMapKit */; };
+		F8E8F0002D0111D6004C539B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8EFFF2D0111D6004C539B /* SnapKit */; };
+		F8E8F0022D0111D6004C539B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8F0012D0111D6004C539B /* SnapKit-Dynamic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F8E8EFC52D010EC3004C539B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +61,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E8EFFB2D0111AD004C539B /* SDWebImage in Frameworks */,
+				F8E8EFF62D011142004C539B /* Alamofire in Frameworks */,
+				F8E8EFFD2D0111AD004C539B /* SDWebImageMapKit in Frameworks */,
+				F8E8EFF82D011142004C539B /* AlamofireDynamic in Frameworks */,
+				F8E8F0002D0111D6004C539B /* SnapKit in Frameworks */,
+				F8E8F0022D0111D6004C539B /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +127,12 @@
 			);
 			name = takeout;
 			packageProductDependencies = (
+				F8E8EFF52D011142004C539B /* Alamofire */,
+				F8E8EFF72D011142004C539B /* AlamofireDynamic */,
+				F8E8EFFA2D0111AD004C539B /* SDWebImage */,
+				F8E8EFFC2D0111AD004C539B /* SDWebImageMapKit */,
+				F8E8EFFF2D0111D6004C539B /* SnapKit */,
+				F8E8F0012D0111D6004C539B /* SnapKit-Dynamic */,
 			);
 			productName = takeout;
 			productReference = F8E8EFB32D010EC2004C539B /* takeout.app */;
@@ -195,6 +216,11 @@
 			);
 			mainGroup = F8E8EFAA2D010EC2004C539B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F8E8EFF42D011142004C539B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F8E8EFF92D0111AD004C539B /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				F8E8EFFE2D0111D6004C539B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F8E8EFB42D010EC2004C539B /* Products */;
 			projectDirPath = "";
@@ -583,6 +609,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F8E8EFF42D011142004C539B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		F8E8EFF92D0111AD004C539B /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
+		F8E8EFFE2D0111D6004C539B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F8E8EFF52D011142004C539B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFF42D011142004C539B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F8E8EFF72D011142004C539B /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFF42D011142004C539B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		F8E8EFFA2D0111AD004C539B /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFF92D0111AD004C539B /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		F8E8EFFC2D0111AD004C539B /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFF92D0111AD004C539B /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		F8E8EFFF2D0111D6004C539B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFFE2D0111D6004C539B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		F8E8F0012D0111D6004C539B /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8EFFE2D0111D6004C539B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8E8EFAB2D010EC2004C539B /* Project object */;
 }
